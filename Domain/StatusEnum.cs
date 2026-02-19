@@ -2,5 +2,7 @@
 
 public enum StatusEnum
 {
-    
+    AVAILABLE,
+    CHECKED_OUT,
+    LOST
 }
