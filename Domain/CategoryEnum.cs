@@ -3,6 +3,6 @@
 public enum CategoryEnum
 {
     LAPTOP,
-    VR HEADSET,
+    VR_HEADSET,
     SENSOR
 }

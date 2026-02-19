@@ -4,13 +4,13 @@ namespace ITCS_3112_Lab_1_Checkout.Domain;
 
 public class Item
 {
-    private string Id { get; init; }
+    public string Id { get; init; }
     public string Name { get; set; }
     public CategoryEnum Category { get; private set; }
     public StatusEnum Status { get; private set; }
     public string Description { get; set; }
     public ConditionEnum Condition { get; private set; }
-    private Policy Policy { get; set; }
+    public Policy Policy { get; private set; }
 
     public Item(string id, string name, CategoryEnum category, StatusEnum status, ConditionEnum condition, Policy policy)
     {

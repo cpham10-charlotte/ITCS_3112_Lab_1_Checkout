@@ -14,6 +14,13 @@ public class ItemRepository : IRepository
     }
     public void SaveItem(Item item)
     {
-        Item item existingItem = this.GetItem(item.id);
+        Item item existingItem = this.GetItem(item.Id);
+
+        if (existingItem != null)
+        {
+            items.Remove(existingItem);
+        }
+        
+        items.Add(item.Id, item);
     }
 }
