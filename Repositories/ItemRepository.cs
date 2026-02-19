@@ -6,11 +6,13 @@ namespace ITCS_3112_Lab_1_Checkout.Repositories;
 public class ItemRepository : IRepository
 {
     private Dictionary<string, Item> items;
+    private Dictionary<string, CheckoutRecord> records;
 
     // Initializes the class with an existing dictionary
-    public ItemRepository(Dictionary<string, Item> items)
+    public ItemRepository(Dictionary<string, Item> items, Dictionary<string, CheckoutRecord> records)
     {
         this.items = items;
+        this.records = records;
     }
     public void SaveItem(Item item)
     {
@@ -38,6 +40,20 @@ public class ItemRepository : IRepository
     {
         return items.Values.ToList();
     }
-    
-    
+
+    public void SaveRecord(CheckoutRecord record)
+    {
+        // If item exists, stores in variable
+        CheckoutRecord existingRecord = this.GetActiveRecordFor(record.Id);
+
+        // Removes item if it exists
+        if (existingRecord != null)
+        {
+            throw new ArgumentException("Record already exists");
+        }
+        else
+        {
+            records.Add(record);
+        }
+    }
 }
