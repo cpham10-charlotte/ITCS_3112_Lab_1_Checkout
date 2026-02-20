@@ -1,5 +1,8 @@
 namespace ITCS_3112_Lab_1_Checkout.Domain;
 
+/// <summary>
+/// Records the information of transactions made by borrowers
+/// </summary>
 public class CheckoutRecord
 {
     public string Id { get; init; }

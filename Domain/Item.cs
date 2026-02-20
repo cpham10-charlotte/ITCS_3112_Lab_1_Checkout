@@ -2,6 +2,9 @@ using ITCS_3112_Lab_1_Checkout.Services;
 
 namespace ITCS_3112_Lab_1_Checkout.Domain;
 
+/// <summary>
+/// Items that the system holds and the borrowers interact with
+/// </summary>
 public class Item
 {
     public string Id { get; init; }
