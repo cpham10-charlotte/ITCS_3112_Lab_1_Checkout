@@ -6,10 +6,10 @@ public class Item
 {
     public string Id { get; init; }
     public string Name { get; set; }
-    public CategoryEnum Category { get; private set; }
-    public StatusEnum Status { get; private set; }
+    public CategoryEnum Category { get; set; }
+    public StatusEnum Status { get; set; }
     public string Description { get; set; }
-    public ConditionEnum Condition { get; private set; }
+    public ConditionEnum Condition { get; set; }
     public Policy Policy { get; private set; }
 
     public Item(string id, string name, CategoryEnum category, StatusEnum status, ConditionEnum condition, Policy policy)
