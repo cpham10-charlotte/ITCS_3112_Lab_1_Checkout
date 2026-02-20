@@ -19,10 +19,35 @@ public interface ICheckoutService
     /// <returns>Instance of ICatalog.</returns>
     ICatalog GetCatalog();
     
+    /// <summary>
+    /// Checks out item to borrower and creates new checkout record.
+    /// </summary>
+    /// <param name="itemId">Unique item identifier.</param>
+    /// <param name="borrower">Borrower who is checking out item.</param>
+    /// <param name="dueDate">Requested due date for item.</param>
+    /// <returns>Created checkout record.</returns>
+    /// <remarks>
+    /// Precondition:
+    /// Item must exist.
+    /// Item must be eligible for checkout.
+    /// Postcondition:
+    /// New checkout record must be created and stored.
+    /// Item status is updated.
+    /// </remarks>
+    CheckoutRecord Checkout(string itemId, Borrower borrower, DateTime dueDate);
     
-    //Receipt Checkout(string itemId, Borrower borrower, DateTime dueDate);
-
-    //Receipt ReturnItem(string itemId);
+    /// <summary>
+    /// Returns item and closes its active checkout record.
+    /// </summary>
+    /// <param name="itemId">Unique ID of item being returned.</param>
+    /// <returns>Updated checkout record with return date set.</returns>
+    /// <remarks>
+    /// Precondition: Item must have active checkout record.
+    /// Postconditions:
+    /// Checkout record updated with returned date.
+    /// Item status updated.
+    /// </remarks>
+    CheckoutRecord ReturnItem(string itemId);
 
     /// <summary>
     /// Marks item as lost.
