@@ -17,12 +17,12 @@ public class ItemRepository : IRepository
     public void SaveItem(Item item)
     {
         // If item exists, stores in variable
-        Item item existingItem = this.GetItem(item.Id);
+        Item existingItem = this.GetItem(item.Id);
 
         // Removes item if it exists
         if (existingItem != null)
         {
-            items.Remove(existingItem);
+            items.Remove(existingItem.Id, out existingItem);
         }
         
         items.Add(item.Id, item);
@@ -33,7 +33,14 @@ public class ItemRepository : IRepository
         Item match = null;
         // Checks if item exists and finds match
         items.TryGetValue(id, out match);
-        return match;
+        if (match == null)
+        {
+            throw new ArgumentException("Item not found");
+        }
+        else
+        {
+            return match;
+        }
     }
 
     public IReadOnlyList<Item> AllItems()
@@ -53,7 +60,22 @@ public class ItemRepository : IRepository
         }
         else
         {
-            records.Add(record);
+            records.Add(record.Id, record);
+        }
+    }
+
+    public CheckoutRecord GetActiveRecordFor(string id)
+    {
+        CheckoutRecord match = null;
+        
+        records.TryGetValue(id, out match);
+        if (match == null)
+        {
+            throw new ArgumentException("Record not found");
+        }
+        else
+        {
+            return match;
         }
     }
 }
