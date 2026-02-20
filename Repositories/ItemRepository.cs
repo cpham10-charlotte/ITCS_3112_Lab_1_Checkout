@@ -78,4 +78,9 @@ public class ItemRepository : IRepository
             return match;
         }
     }
+
+    public IReadOnlyList<CheckoutRecord> AllRecords()
+    {
+        return records.Values.ToList();
+    }
 }
