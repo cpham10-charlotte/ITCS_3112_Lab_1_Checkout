@@ -34,7 +34,7 @@ public interface ICheckoutService
     /// New checkout record must be created and stored.
     /// Item status is updated.
     /// </remarks>
-    CheckoutRecord Checkout(string itemId, Borrower borrower, DateTime dueDate);
+    CheckoutRecord Checkout(List<string> itemId, Borrower borrower, DateTime dueDate);
     
     /// <summary>
     /// Returns item and closes its active checkout record.
