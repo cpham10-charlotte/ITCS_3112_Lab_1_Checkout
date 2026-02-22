@@ -11,6 +11,12 @@ public interface ICatalog
     /// </summary>
     /// <returns>Read only list of available items.</returns>
     IReadOnlyList<Item> ListAvailable();
+
+    /// <summary>
+    /// Lists items that are unavailable for checkout.
+    /// </summary>
+    /// <returns>Read only list of unavailable items.</returns>
+    IReadOnlyList<Item> ListUnavailable();
     
     /// <summary>
     /// Finds specific item by its unique id.
