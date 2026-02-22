@@ -145,6 +145,12 @@ class Program
                 break;
         }
     }
-    
-    static void MarkLost(ICheckoutService checkoutService){}
+
+    static void MarkLost(ICheckoutService checkoutService)
+    {
+        Console.WriteLine("Enter item id: ");
+        string itemId = Console.ReadLine();
+        checkoutService.MarkLost(itemId);
+        Console.WriteLine($"{itemId} has been marked as lost");
+    }
 }
