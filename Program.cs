@@ -69,10 +69,10 @@ class Program
         string name = Console.ReadLine();
         Console.WriteLine("Enter Item Category (LAPTOP, VR HEADSET, SENSOR): \n");
         string category = Console.ReadLine();
-        Enum.TryParse(category, out CategoryEnum categoryEnum);
+        Enum.TryParse(category, true, out CategoryEnum categoryEnum);
         Console.WriteLine("Enter Item Condition(GOOD, FAIR, POOR): \n");
         string condition = Console.ReadLine();
-        Enum.TryParse(condition, out ConditionEnum conditionEnum);
+        Enum.TryParse(condition, true, out ConditionEnum conditionEnum);
 
         Item newItem = new Item(id, name, categoryEnum, StatusEnum.AVAILABLE, conditionEnum);
         repository.SaveItem(newItem);

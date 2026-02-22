@@ -22,16 +22,7 @@ public class ItemRepository : IRepository
     /// <param name="item">Item to be added</param>
     public void SaveItem(Item item)
     {
-        // If item exists, stores in variable
-        Item existingItem = this.GetItem(item.Id);
-
-        // Removes item if it exists
-        if (existingItem != null)
-        {
-            items.Remove(existingItem.Id, out existingItem);
-        }
-        
-        items.Add(item.Id, item);
+        items[item.Id] = item;
     }
 
     /// <summary>
