@@ -13,15 +13,14 @@ public class Item
     public StatusEnum Status { get; set; }
     public string Description { get; set; }
     public ConditionEnum Condition { get; set; }
-    public Policy Policy { get; private set; }
+    public Policy Policy { get; set; }
 
-    public Item(string id, string name, CategoryEnum category, StatusEnum status, ConditionEnum condition, Policy policy)
+    public Item(string id, string name, CategoryEnum category, StatusEnum status, ConditionEnum condition)
     {
         this.Id = id;
         this.Name = name;
         this.Category = category;
         this.Status = status;
         this.Condition = condition;
-        this.Policy = policy;
     }
 }

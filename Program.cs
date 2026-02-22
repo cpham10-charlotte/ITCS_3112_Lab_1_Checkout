@@ -62,7 +62,45 @@ class Program
     {
         Console.WriteLine("==============================================");
         Console.WriteLine("Add items to inventory");
-        Console.WriteLine("Enter each field on its own line: ID, Name, Category, Condition");
+        /* Console.WriteLine("Enter each field on its own line: ID, Name, Category, Condition"); */
+        Console.WriteLine("Enter Item Id: \n");
+        string id = Console.ReadLine();
+        Console.WriteLine("Enter Item Name: \n");
+        string name = Console.ReadLine();
+        Console.WriteLine("Enter Item Category (LAPTOP, VR HEADSET, SENSOR): \n");
+        string category = Console.ReadLine();
+        CategoryEnum categoryEnum;
+        switch (category.ToLower())
+        {
+            case "laptop":
+                categoryEnum = CategoryEnum.LAPTOP;
+                break;
+            case "vrheadset":
+                categoryEnum = CategoryEnum.VR_HEADSET;
+                break;
+            case "sensor":
+                categoryEnum = CategoryEnum.SENSOR;
+                break;
+        }
+        Console.WriteLine("Enter Item Condition(GOOD, FAIR, POOR): \n");
+        Console.ReadLine();
+        string condition = Console.ReadLine();
+        ConditionEnum conditionEnum;
+        switch (condition.ToLower())
+        {
+            case "good":
+                conditionEnum = ConditionEnum.GOOD;
+                break;
+            case "fair":
+                conditionEnum = ConditionEnum.FAIR;
+                break;
+            case "poor":
+                conditionEnum = ConditionEnum.POOR;
+                break;
+        }
+
+        Item newItem = new Item(id, name, categoryEnum, StatusEnum.AVAILABLE, conditionEnum);
+        repository.SaveItem(newItem);
     }
 
     static void ListAvailable(ICheckoutService checkoutService)
@@ -76,11 +114,17 @@ class Program
 
     static void ListUnavailable(ICheckoutService checkoutService)
     {
+        IReadOnlyList<Item> items = checkoutService.GetCatalog().ListUnavailable();
+        foreach (var item in items)
+        {
+            Console.WriteLine($"{item.Id} - {item.Name} - {item.Category} - {item.Condition}");
+        }
+    }
+
+    static void CheckoutItem(ICheckoutService checkoutService)
+    {
         
     }
-    
-    static void CheckoutItem(ICheckoutService checkoutService)
-    {}
     static void ReturnItem(ICheckoutService checkoutService){}
     
     static void ShowDueSoon(ICheckoutService checkoutService){}
