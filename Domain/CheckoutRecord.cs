@@ -18,4 +18,9 @@ public class CheckoutRecord
         this.Borrower = borrower;
         this.Date = DateTime.Now;
     }
+
+    public override string ToString()
+    {
+        return $"{this.Id}: Borrowed Items: {this.Items}, Borrower: {this.Borrower}, Date: {this.Date}, Due date: {this.DueDate}";
+    }
 }
