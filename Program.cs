@@ -121,8 +121,15 @@ class Program
             Console.WriteLine(record);
         }
     }
-    
-    static void ShowOverdue(ICheckoutService checkoutService){}
+
+    static void ShowOverdue(ICheckoutService checkoutService)
+    {
+        IReadOnlyList<CheckoutRecord> records = checkoutService.FindOverdue();
+        foreach (var record in records)
+        {
+            Console.WriteLine(record);
+        }
+    }
     
     static void Search(ICheckoutService checkoutService){}
     
