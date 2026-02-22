@@ -21,6 +21,6 @@ public class CheckoutRecord
 
     public override string ToString()
     {
-        return $"{this.Id}: Borrowed Items: {this.Items}, Borrower: {this.Borrower}, Date: {this.Date}, Due date: {this.DueDate}";
+        return $"{this.Items[0].Id} | {this.Borrower.Name} | {this.Borrower.Email} | Due: {this.DueDate}";
     }
 }
