@@ -103,7 +103,22 @@ class Program
 
     static void CheckoutItem(ICheckoutService checkoutService)
     {
+        Console.WriteLine("==============================================");
+        Console.WriteLine("Checkout item:");
+        Console.WriteLine("Enter Borrower Id: \n");
+        string id = Console.ReadLine();
+        Console.WriteLine("Enter Borrower Name: \n");
+        string name = Console.ReadLine();
+        Console.WriteLine("Enter Borrower Email: \n");
+        string email = Console.ReadLine();
+
+        var borrower = new Borrower(id, name, email);
         
+        Console.WriteLine("Due date:");
+        DateTime dueDate = DateTime.Parse(Console.ReadLine());
+        var record = checkoutService.Checkout(new List<string> {id}, borrower, dueDate);
+        Console.WriteLine("Record:");
+        Console.WriteLine($"{record.Date} | Checkout due {record.DueDate} | {id}");
     }
 
     static void ReturnItem(ICheckoutService checkoutService)
@@ -138,10 +153,47 @@ class Program
         switch (choice)
         {
             case "1":
+                Console.WriteLine("Enter item Id: ");
+                string id = Console.ReadLine();
+                var item = checkoutService.GetCatalog().FindById(id);
+                if (item == null)
+                {
+                    Console.WriteLine("Item not found");
+                }
+                else
+                {
+                    Console.WriteLine($"{item.Id} | {item.Name} | {item.Condition}");
+                }
                 break;
             case "2":
+                Console.WriteLine("Enter item Name: ");
+                string name = Console.ReadLine();
+                var result = checkoutService.GetCatalog().SearchBy(name);
+                if (result.Count == 0)
+                {
+                    Console.WriteLine("None found");
+                    return;
+                }
+
+                foreach (var items in result)
+                {
+                    Console.WriteLine($"{items.Id} | {items.Name} | {items.Condition}");
+                }
                 break;
             case "3":
+                Console.WriteLine("Enter item Category: ");
+                string category = Console.ReadLine(); 
+                var categoryResult = checkoutService.GetCatalog().SearchBy(category);
+                if (categoryResult.Count == 0)
+                {
+                    Console.WriteLine("None found");
+                    return;
+                }
+
+                foreach (var items in categoryResult)
+                {
+                    Console.WriteLine($"{items.Id} | {items.Name} | {items.Condition}");
+                }
                 break;
         }
     }
