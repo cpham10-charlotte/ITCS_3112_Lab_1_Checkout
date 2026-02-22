@@ -69,35 +69,10 @@ class Program
         string name = Console.ReadLine();
         Console.WriteLine("Enter Item Category (LAPTOP, VR HEADSET, SENSOR): \n");
         string category = Console.ReadLine();
-        CategoryEnum categoryEnum;
-        switch (category.ToLower())
-        {
-            case "laptop":
-                categoryEnum = CategoryEnum.LAPTOP;
-                break;
-            case "vrheadset":
-                categoryEnum = CategoryEnum.VR_HEADSET;
-                break;
-            case "sensor":
-                categoryEnum = CategoryEnum.SENSOR;
-                break;
-        }
+        Enum.TryParse(category, out CategoryEnum categoryEnum);
         Console.WriteLine("Enter Item Condition(GOOD, FAIR, POOR): \n");
-        Console.ReadLine();
         string condition = Console.ReadLine();
-        ConditionEnum conditionEnum;
-        switch (condition.ToLower())
-        {
-            case "good":
-                conditionEnum = ConditionEnum.GOOD;
-                break;
-            case "fair":
-                conditionEnum = ConditionEnum.FAIR;
-                break;
-            case "poor":
-                conditionEnum = ConditionEnum.POOR;
-                break;
-        }
+        Enum.TryParse(condition, out ConditionEnum conditionEnum);
 
         Item newItem = new Item(id, name, categoryEnum, StatusEnum.AVAILABLE, conditionEnum);
         repository.SaveItem(newItem);
