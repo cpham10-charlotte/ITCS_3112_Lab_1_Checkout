@@ -63,17 +63,18 @@ public class ItemRepository : IRepository
     public void SaveRecord(CheckoutRecord record)
     {
         // If item exists, stores in variable
-        CheckoutRecord existingRecord = this.GetActiveRecordFor(record.Id);
+        //CheckoutRecord existingRecord = this.GetActiveRecordFor(record.Id);
 
         // Removes item if it exists
-        if (existingRecord != null)
+        /*if (existingRecord != null)
         {
             throw new ArgumentException("Record already exists");
         }
         else
         {
             records.Add(record.Id, record);
-        }
+        }*/
+        records[record.Id] = record;
     }
 
     /// <summary>
