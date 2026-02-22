@@ -48,6 +48,8 @@ class Program
                 case "9":
                     MarkLost(checkoutService);
                     break;
+                case "0":
+                    break;
             }
         }
     }
@@ -80,11 +82,8 @@ class Program
 
     static void ListAvailable(ICheckoutService checkoutService)
     {
-        IReadOnlyList<Item> items = checkoutService.GetCatalog().ListAvailable();
-        foreach (var item in items)
-        {
-            Console.WriteLine($"{item.Id} - {item.Name} - {item.Category} - {item.Condition}");
-        }
+        Console.WriteLine(checkoutService.GetCatalog().ListAvailable());
+        
     }
 
     static void ListUnavailable(ICheckoutService checkoutService)

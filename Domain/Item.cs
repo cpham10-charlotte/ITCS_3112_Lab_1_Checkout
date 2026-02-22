@@ -23,4 +23,9 @@ public class Item
         this.Status = status;
         this.Condition = condition;
     }
+
+    public override string ToString()
+    {
+        return $"{this.Id}: {this.Name}, {this.Category}, {this.Status}, {this.Condition}";
+    }
 }
