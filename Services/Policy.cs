@@ -7,36 +7,27 @@ namespace ITCS_3112_Lab_1_Checkout.Services;
 /// </summary>
 public class Policy : IPolicy
 {
-    private List<Item> items;
-    private bool canCheckout;
+    //private List<Item> items;
+    //private bool canCheckout;
     
-    public Policy(List<Item> items)
+    /*public Policy(List<Item> items)
     {
         this.items = items;
-    }
+    }*/
     
     public bool CanCheckout(Item item)
     {
-        //if the list does not contain the item, returns false.
-        if (!items.Contains(item))
-        {
-            canCheckout = false;
-            return false;
-        }
         //if the status is not available, return false.
         if (item.Status != StatusEnum.AVAILABLE)
         {
-            canCheckout = false;
             return false;
         }
         //if the condition is poor, returns false.
         if (item.Condition == ConditionEnum.POOR)
         {
-            canCheckout = false;
             return false;
         }
         //otherwise, returns true and may be checked out.
-        canCheckout = true;
         return true;
     }
     

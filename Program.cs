@@ -10,7 +10,7 @@ class Program
     static void Main(string[] args)
     {
         var itemRepository = new ItemRepository(new Dictionary<string, Item>(), new Dictionary<string, CheckoutRecord>());
-        var policy = new Policy(new List<Item>());
+        var policy = new Policy();
         var clock = new Clock();
         var catalog = new Catalog(itemRepository);
         var checkoutService = new CheckoutService(itemRepository, policy, clock, catalog);
@@ -116,19 +116,35 @@ class Program
         Console.WriteLine("==============================================");
         Console.WriteLine("Checkout item:");
         Console.WriteLine("Enter Borrower Id: \n");
-        string id = Console.ReadLine();
+        string borrowerId = Console.ReadLine();
         Console.WriteLine("Enter Borrower Name: \n");
         string name = Console.ReadLine();
         Console.WriteLine("Enter Borrower Email: \n");
         string email = Console.ReadLine();
 
-        var borrower = new Borrower(id, name, email);
+        var borrower = new Borrower(borrowerId, name, email);
+        
+        Console.WriteLine("Enter Item Id: \n");
+        string itemId = Console.ReadLine();
         
         Console.WriteLine("Due date:");
-        DateTime dueDate = DateTime.Parse(Console.ReadLine());
-        var record = checkoutService.Checkout(new List<string> {id}, borrower, dueDate);
-        Console.WriteLine("Record:");
-        Console.WriteLine($"{record.Date} | Checkout due {record.DueDate} | {id}");
+        DateTime dueDate;
+        while (!DateTime.TryParse(Console.ReadLine(), out dueDate))
+        {
+            Console.WriteLine("Invalid due date");
+        }
+
+        try
+        {
+            var record = checkoutService.Checkout(new List<string> { itemId }, borrower, dueDate);
+            Console.WriteLine("Record:");
+            Console.WriteLine($"{record.Date} | Checkout due {record.DueDate} | {borrower.Name}");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
     }
 
     static void ReturnItem(ICheckoutService checkoutService)

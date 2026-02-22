@@ -43,12 +43,12 @@ public class CheckoutService : ICheckoutService
             //if item doesn't exist, throws exception.
             if (item == null)
             {
-                throw new Exception($"Item with id {itemId} not found");
+                throw new Exception($"Item with id {id} not found");
             }
             //if policy says item cannot be checked out, throws exception.
             if (!policy.CanCheckout(item))
             {
-                throw new Exception($"Item with id {itemId} cannot be checked out");
+                throw new Exception($"Item with id {id} cannot be checked out");
             }
             //otherwise, adds item to list.
             items.Add(item);
