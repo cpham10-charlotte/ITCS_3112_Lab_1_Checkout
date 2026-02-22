@@ -16,6 +16,16 @@ class Program
         var checkoutService = new CheckoutService(itemRepository, policy, clock, catalog);
         bool hold = true;
         
+        Item item1 = new Item("LPT1", "Dell XPS 13", CategoryEnum.LAPTOP,  StatusEnum.AVAILABLE, ConditionEnum.GOOD);
+        Item item2 = new Item("LPT2", "Dell XPS 15", CategoryEnum.LAPTOP, StatusEnum.CHECKED_OUT, ConditionEnum.GOOD);
+        Item item3 = new Item("VR1", "Oculus Rift", CategoryEnum.VR_HEADSET,  StatusEnum.AVAILABLE, ConditionEnum.FAIR);
+        Item item4 = new Item("S1", "Sensor Name", CategoryEnum.SENSOR,  StatusEnum.LOST, ConditionEnum.POOR);
+        
+        itemRepository.SaveItem(item1);
+        itemRepository.SaveItem(item2);
+        itemRepository.SaveItem(item3);
+        itemRepository.SaveItem(item4);
+        
         while (hold)
         {
             ShowMenu();
