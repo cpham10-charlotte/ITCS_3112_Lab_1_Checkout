@@ -115,7 +115,11 @@ class Program
 
     static void ShowDueSoon(ICheckoutService checkoutService)
     {
-        
+        IReadOnlyList<CheckoutRecord> records = checkoutService.FindDueSoon(TimeSpan.FromDays(1));
+        foreach (var record in records)
+        {
+            Console.WriteLine(record);
+        }
     }
     
     static void ShowOverdue(ICheckoutService checkoutService){}
