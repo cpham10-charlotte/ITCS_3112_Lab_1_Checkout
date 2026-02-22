@@ -46,4 +46,9 @@ public class Borrower
     {
         this.BorrowHistory.Add(record);
     }
+
+    public override string ToString()
+    {
+        return $"{this.Id}: {this.Name}, {this.Email}";
+    }
 }
