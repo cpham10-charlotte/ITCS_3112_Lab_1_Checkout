@@ -130,8 +130,21 @@ class Program
             Console.WriteLine(record);
         }
     }
-    
-    static void Search(ICheckoutService checkoutService){}
+
+    static void Search(ICheckoutService checkoutService)
+    {
+        Console.WriteLine("Enter number for search type: \n1) Item Id \n2) Name \n3) Category ");
+        string choice = Console.ReadLine();
+        switch (choice)
+        {
+            case "1":
+                break;
+            case "2":
+                break;
+            case "3":
+                break;
+        }
+    }
     
     static void MarkLost(ICheckoutService checkoutService){}
 }
