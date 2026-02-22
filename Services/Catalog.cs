@@ -19,6 +19,12 @@ public class Catalog : ICatalog
         //returns list of onlt available items
         return repository.AllItems().Where(item => item.Status == StatusEnum.AVAILABLE).ToList();
     }
+
+    public IReadOnlyList<Item> ListUnavailable()
+    {
+        return repository.AllItems().Where(item => item.Status == StatusEnum.CHECKED_OUT 
+                                                   || item.Status == StatusEnum.LOST).ToList();
+    }
     
     public Item? FindById(string itemId)
     {

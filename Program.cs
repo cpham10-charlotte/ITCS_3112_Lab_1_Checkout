@@ -28,7 +28,7 @@ class Program
                     ListAvailable(checkoutService);
                     break;
                 case "3":
-                    ListUnavailable(itemRepository);
+                    ListUnavailable(checkoutService);
                     break;
                 case "4":
                     CheckoutItem(checkoutService);
@@ -65,9 +65,19 @@ class Program
         Console.WriteLine("Enter each field on its own line: ID, Name, Category, Condition");
     }
 
-    static void ListAvailable(ICheckoutService checkoutService){}
+    static void ListAvailable(ICheckoutService checkoutService)
+    {
+        IReadOnlyList<Item> items = checkoutService.GetCatalog().ListAvailable();
+        foreach (var item in items)
+        {
+            Console.WriteLine($"{item.Id} - {item.Name} - {item.Category} - {item.Condition}");
+        }
+    }
 
-    static void ListUnavailable(ItemRepository repository){}
+    static void ListUnavailable(ICheckoutService checkoutService)
+    {
+        
+    }
     
     static void CheckoutItem(ICheckoutService checkoutService)
     {}
