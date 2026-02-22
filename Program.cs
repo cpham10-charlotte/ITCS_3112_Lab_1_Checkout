@@ -14,8 +14,9 @@ class Program
         var clock = new Clock();
         var catalog = new Catalog(itemRepository);
         var checkoutService = new CheckoutService(itemRepository, policy, clock, catalog);
-
-        while (true)
+        bool hold = true;
+        
+        while (hold)
         {
             ShowMenu();
             string number = Console.ReadLine();
@@ -49,6 +50,7 @@ class Program
                     MarkLost(checkoutService);
                     break;
                 case "0":
+                    hold = false;
                     break;
             }
         }
@@ -82,16 +84,20 @@ class Program
 
     static void ListAvailable(ICheckoutService checkoutService)
     {
-        Console.WriteLine(checkoutService.GetCatalog().ListAvailable());
-        
+        IReadOnlyList<Item> items = checkoutService.GetCatalog().ListAvailable();
+        foreach (var item in items)
+        {
+            Console.WriteLine(item);
+        }
     }
+    
 
     static void ListUnavailable(ICheckoutService checkoutService)
     {
         IReadOnlyList<Item> items = checkoutService.GetCatalog().ListUnavailable();
         foreach (var item in items)
         {
-            Console.WriteLine($"{item.Id} - {item.Name} - {item.Category} - {item.Condition}");
+            Console.WriteLine(item);
         }
     }
 
@@ -99,9 +105,18 @@ class Program
     {
         
     }
-    static void ReturnItem(ICheckoutService checkoutService){}
-    
-    static void ShowDueSoon(ICheckoutService checkoutService){}
+
+    static void ReturnItem(ICheckoutService checkoutService)
+    {
+        Console.WriteLine("Enter Item Id: ");
+        string itemId = Console.ReadLine();
+        checkoutService.ReturnItem(itemId);
+    }
+
+    static void ShowDueSoon(ICheckoutService checkoutService)
+    {
+        
+    }
     
     static void ShowOverdue(ICheckoutService checkoutService){}
     
